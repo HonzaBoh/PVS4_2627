@@ -1,22 +1,11 @@
 package exams;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 
 public class VisualDemo extends JFrame {
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-//        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-//        for (UIManager.LookAndFeelInfo look : looks) {
-//            System.out.println(look.getClassName());
-//        }
-//        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-        FlatDarkLaf.setup();
-
-        UIManager.setLookAndFeel(new FlatDarkLaf());
+    public static void main(String[] args) {
        new VisualDemo().setVisible(true);
     }
 
@@ -74,7 +63,7 @@ public class VisualDemo extends JFrame {
     private static JLabel makeTile(String title) {
         JLabel lbl = new JLabel(title, SwingConstants.CENTER);
         lbl.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-//        lbl.setBackground(Color.white);
+        lbl.setBackground(Color.white);
         lbl.setOpaque(true);
         lbl.setFont(lbl.getFont().deriveFont(Font.BOLD, 13f));
         return lbl;
