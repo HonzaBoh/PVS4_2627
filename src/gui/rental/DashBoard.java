@@ -10,7 +10,7 @@ public class DashBoard extends JFrame {
 
     // Tabulka
     private JTable table;
-    private DefaultTableModel model;
+    private static DefaultTableModel model;
 
     public DashBoard(){
         setTitle("Dashboard");
@@ -30,24 +30,33 @@ public class DashBoard extends JFrame {
         table = new JTable(model);
         JScrollPane pane = new JScrollPane(table);
 
+        rents.add(new Rent("Karel", 222, false, SkiType.CROSSCOUNTRY, 6));
+        rents.add(new Rent("Pepa", 245, true, SkiType.SNOWBOARD, 9));
+
         // TODO lépe:
-        loadTable();
+        reloadTable();
 
         // South
         JPanel buttonPanel = new JPanel();
 
         JButton formButton = new JButton("New rent");
+
         JButton detailButton = new JButton("Detail");
+        JButton deleteButton = new JButton("Delete");
         JButton editButton = new JButton("Edit");
         JButton saveButton = new JButton("Save");
 
+        deleteButton.addActionListener(e -> delete(table.getSelectedRow()));
         formButton.addActionListener(e -> openForm());
         saveButton.addActionListener(e -> save());
+        editButton.addActionListener(e -> edit(table.getSelectedRow()));
         // TODO: dodělat zbytek tlačítek
 
         buttonPanel.add(formButton);
         buttonPanel.add(detailButton);
         buttonPanel.add(editButton);
+
+        buttonPanel.add(deleteButton);
         buttonPanel.add(saveButton);
 
         add(title, BorderLayout.NORTH);
@@ -55,31 +64,28 @@ public class DashBoard extends JFrame {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private void loadTable(){
-        rents.add(new Rent(
-                "John",
-                153,
-                true,
-                SkiType.SKI,
-                4
-        )); rents.add(new Rent(
-                "John",
-                153,
-                true,
-                SkiType.SKI,
-                4
-        )); rents.add(new Rent(
-                "John",
-                153,
-                true,
-                SkiType.SKI,
-                4
-        ));
 
+
+    static void reloadTable(){
         model.setRowCount(0);
         for(Rent rent : rents){
             model.addRow(rent.returnAsTableRow());
         }
+    }
+
+    private void edit(int rowNum){
+        if (rowNum < 0){
+            JOptionPane.showMessageDialog(this, "Row isn't selected" ,"Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Rent r = rents.get(rowNum);
+        RentalForm form = new RentalForm(r);
+        form.setVisible(true);
+    }
+
+    private void delete(int rowNum){
+        rents.remove(rowNum);
+        reloadTable();
     }
 
     private void save() {
@@ -88,6 +94,9 @@ public class DashBoard extends JFrame {
 
     private void openForm() {
         // TODO: otevřít formulář, získat z něj Rent objekt a nacpat do ArrayListu
+        RentalForm form =  new RentalForm();
+//        rents.add(new Rent(...))
+        form.setVisible(true);
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package gui;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -56,10 +58,15 @@ public class MovieTable extends JFrame {
                 data.sort(new Comparator<Record>() {
                     @Override
                     public int compare(Record o1, Record o2) {
-                        return (int) (o1.rating - o2.rating);
+                        return Double.compare(o1.getRating(), o2.getRating());
                     }
                 });
             }
+            if(durationButton.isSelected()){
+                data.sort(Comparator.comparingInt(Record::getDuration));
+            }
+            model.setRowCount(0);
+            fillTable();
             System.out.println(data);
         });
 //        sortButton.setFocusable(false);
@@ -108,6 +115,8 @@ public class MovieTable extends JFrame {
     }
 
     public static void main(String[] args) {
+
+        FlatDarkLaf.setup();
        MovieTable mainWindow =  new MovieTable();
        mainWindow.setVisible(true);
     }
