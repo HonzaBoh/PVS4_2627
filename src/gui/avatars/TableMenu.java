@@ -9,7 +9,7 @@ public class TableMenu extends JFrame {
     DefaultTableModel model;
 
     TableMenu(){
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 600);
         this.setLayout(new BorderLayout());
         this.setResizable(false);

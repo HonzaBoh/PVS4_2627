@@ -8,11 +8,9 @@ public class Person {
     String name, surname;
     int shoeSize, salary;
 
-    static final String DATA_PATH = "data";
-
     public Person(String name, String surname, int shoeSize, int salary, String avatarPath) {
         this.avatarPath = avatarPath;
-        this.avatar = new ImageIcon(DATA_PATH + "/" + avatarPath);
+        this.avatar = new ImageIcon(avatarPath);
         this.name = name;
         this.surname = surname;
         this.shoeSize = shoeSize;
