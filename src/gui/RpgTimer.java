@@ -3,7 +3,7 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class rpgTimer extends JFrame {
+public class RpgTimer extends JFrame {
 
     private int playerHP = 100;
     private int monsterHP = 100;
@@ -24,7 +24,7 @@ public class rpgTimer extends JFrame {
     private Timer playerTimer;
     private Timer monsterTimer;
 
-    public rpgTimer() {
+    public RpgTimer() {
         setTitle("Mini RPG Duel");
         setSize(700, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -161,6 +161,18 @@ public class rpgTimer extends JFrame {
     }
 
     public static void main(String[] args) {
-        new rpgTimer().setVisible(true);
+        new RpgTimer().setVisible(true);
+
+        // Monster utoci kazde 3s za 10hp
+        //   BONUS: // Sance 33% na jedovy utok, ktery pusobi
+        //   BONUS: // 5s a kazdou sekundu ubira 5hp
+
+        // Quick attack zautoci za 5hp a ma Cooldown 2s
+        // Heavy attack zautoci za 10hp a ma Cooldown 3s
+        // Special attack zautoci za 20hp a ma cooldown 5s
+        //   BONUS: // Kriticka sance 40% na 2x dmg
+
+        // Vyhrava ten, kdo prezije
+        // Ohlasite messageBoxem
     }
 }
